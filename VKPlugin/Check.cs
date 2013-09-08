@@ -12,7 +12,7 @@ namespace VKPlugin
                 Aauth.AauthRun();
             }
 
-            string text2 = Messages.UnReadMessages(token, id);
+            string text2 = Messages.UnReadedMessages(token, id);
             if (text2 == "error")
             {
                 Aauth.AauthRun();

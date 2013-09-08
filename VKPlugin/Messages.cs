@@ -5,7 +5,7 @@ namespace VKPlugin
 {
     public static class Messages
     {
-        public static string UnReadMessages(string token, string id)
+        public static string UnReadedMessages(string token, string id)
         {
             // Параметры.
             string method = "messages.get.xml?";

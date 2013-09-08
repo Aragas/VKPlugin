@@ -37,7 +37,7 @@ namespace VKPlugin
                 token = sr.ReadLine();
             }
 
-            // Проверка существования данных
+            // Проверка существования данных.
             if (id == null)
             {
                 Aauth.AauthRun();

@@ -17,8 +17,6 @@ namespace VKPlugin
         public static void AauthRun()
         {
             Application.Run(new Aauth());
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
         }
 
         public Aauth()
