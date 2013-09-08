@@ -24,9 +24,9 @@ namespace PluginVK
 {
     public static class Messages
     {
-        public static string UnReadedMessages(string token, string id)
+        public static string UnReadMessages(string token, string id)
         {
-            // Параметры.
+            // Main parameters.
             string method = "messages.get.xml?";
             string param = "&filters=1";
 
@@ -35,9 +35,9 @@ namespace PluginVK
 
             XmlNodeList nodeListError;
             XmlNode root = doc.DocumentElement;
-            nodeListError = root.SelectNodes("error_code"); // Для выявления ошибочного запроса.
+            nodeListError = root.SelectNodes("error_code"); // For request error detecting.
 
-            // Выявление ошибочного запрса.
+            // Detecting request error.
             string sucheck = "";
             string sucheckerror = "<error_code>5</error_code>";
             string sucheckerror2 = "<error_code>7</error_code>";
@@ -47,11 +47,13 @@ namespace PluginVK
                 sucheck = node.OuterXml;
             }
 
+            // Detecting error.
             if (sucheck == sucheckerror)
             {
                 return "error";
             }
 
+            // Detecting error.
             if (sucheck == sucheckerror2)
             {
                 return "error";
@@ -59,12 +61,14 @@ namespace PluginVK
 
             string countstring = "0";
 
+            // Counting messages.
             try
             {
                 countstring = root["count"].InnerText;
             }
             catch { }
 
+            // Shitcode, detecting unread messages.
             int i = Convert.ToInt32(countstring);
             if (i > 1)
             {

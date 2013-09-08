@@ -96,7 +96,7 @@
   <ItemGroup>
     <Compile Include="Crypto.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Check.cs" />
+    <Compile Include="GetInfo.cs" />
     <Compile Include="Methods\Messages.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="OAuth.cs">

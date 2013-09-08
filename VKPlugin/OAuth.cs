@@ -24,7 +24,7 @@ namespace PluginVK
             InitializeComponent();
 
 
-            // Переход по ссылке.
+            // Follow link.
             string url = "https://oauth.vk.com/authorize?client_id=3328403"
                 + "&redirect_uri=https://oauth.vk.com/blank.html"
                 + "&scope=friends,messages&display=popup&response_type=token";
@@ -33,37 +33,39 @@ namespace PluginVK
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            // Изъятие из URL строки.
+            // Get string from the URL.
             string url = webBrowser1.Url.ToString();
             string l = url.Split('#')[1];
 
-            // Нахождение токена, временя действия токена и id.
+            // Get token and user_id.
             token = l.Split('&')[0].Split('=')[1];
             id = l.Split('=')[3];
+
+            // Data encrypting.
             string crypto_token = Crypto.Encrypt(token, "ididitjustforlulz");
             string crypto_id = Crypto.Encrypt(id, "ididitjustforlulz");
 
             using (FileStream fs = File.OpenWrite(Verification.path_data))
             {
-                // Перевод id в байты.
-                string idnl = crypto_id + Environment.NewLine;
-                byte[] idbyte = UTF8Encoding.UTF8.GetBytes(idnl);
+                // Converting id to byte.
+                id = crypto_id + Environment.NewLine;
+                byte[] id_byte = UTF8Encoding.UTF8.GetBytes(id);
 
-                // Запись id в файл.
-                fs.Write(idbyte, 0, idbyte.Length);
+                // Recording id.
+                fs.Write(id_byte, 0, id_byte.Length);
 
-                // Создание байтового токена.
-                byte[] info =
+                // Converting token to byte.
+                byte[] token_byte =
                     new UTF8Encoding(true).GetBytes(crypto_token);
 
-                // Запись токена в файл.
-                fs.Write(info, 0, info.Length);
+                // Recording token.
+                fs.Write(token_byte, 0, token_byte.Length);
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Check.CheckRun(token, id, Verification.path_onlineusers, Verification.count);
+            GetInfo.RunGetInfo(token, id, Verification.path_onlineusers, Verification.count);
             this.Close();
         }
     }

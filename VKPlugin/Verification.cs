@@ -25,7 +25,7 @@ namespace PluginVK
 {
     static class Verification
     {
-        // Главные параметры конфигурции.
+        // Main parameters.
         public static string data_name = "Data.tmp";
         public static string onlineusers_name = "OnlineUsers.tmp";
         public static string dir = Environment.GetEnvironmentVariable("TEMP") + "\\";
@@ -35,12 +35,11 @@ namespace PluginVK
 
         public static void Main()
         {
-            // Первичные значения (Из-за using).
             string id = "";
             string crypto_id = "";
             string token = "";
 
-            // Проверка файла на существование.
+            // Check if file exist.
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
@@ -50,7 +49,7 @@ namespace PluginVK
                 using (FileStream stream = File.Create(path_data)) { }
             }
 
-            // Чтение параметров.
+            // Data reading (encrypted id and token).
             using (StreamReader sr = new StreamReader(path_data, Encoding.UTF8))
             {
                 id = sr.ReadLine();
@@ -62,14 +61,14 @@ namespace PluginVK
                 }
             }
 
-            // Проверка существования данных.
+            // Check if data exist.
             if (id == null)
             {
                 OAuth.OAuthRun();
             }
             else
             {
-                Check.CheckRun(token, crypto_id, path_onlineusers, count);
+                GetInfo.RunGetInfo(token, crypto_id, path_onlineusers, count);
             }
 
         }

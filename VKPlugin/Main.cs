@@ -17,6 +17,8 @@
 
 */
 
+// DO NOT TOUCH IT!
+
 using System;
 using System.Collections.Generic;
 using Rainmeter;

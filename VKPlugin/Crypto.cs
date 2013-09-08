@@ -26,20 +26,15 @@ namespace PluginVK
 {
     class Crypto
     {
-        /// Шифрует строку value
-        /// 
-        /// Строка которую необходимо зашифровать
-        /// Ключ шифрования
+
+        // Encryption.
         public static string Encrypt(string str, string keyCrypt)
         {
             return Convert.ToBase64String(Encrypt(Encoding.UTF8.GetBytes(str), keyCrypt));
         }
 
-        /// Расшифроывает данные из строки value
-        /// 
-        /// Зашифрованая строка
-        /// Ключ шифрования
-        /// Возвращает null, если прочесть данные не удалось
+        // Decryption.
+        // Return "error" by error.
         public static string Decrypt(string str, string keyCrypt)
         {
             string Result;
@@ -58,7 +53,7 @@ namespace PluginVK
             }
             catch (CryptographicException)
             {
-                return null;
+                return "error";
             }
 
             return Result;
