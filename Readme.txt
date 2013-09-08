@@ -1,3 +1,3 @@
 1. Download Microsoft Visual Studio 2012
-2. Open VKPlugin.csproj
-3. Compile
+2. Open PluginVK.csproj
+3. COMPILE IT
