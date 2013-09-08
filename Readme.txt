@@ -1,3 +1,4 @@
-1. Download Microsoft Visual Studio 2012
-2. Open PluginVK.csproj
-3. COMPILE IT
+﻿Russian Version.
+1. Скачайте Microsoft Visual Studio 2012
+2. Откройте PluginVK.csproj
+3. КОМПИЛИРУЙТЕ
