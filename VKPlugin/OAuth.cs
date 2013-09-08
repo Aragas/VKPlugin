@@ -42,13 +42,13 @@ namespace PluginVK
             // Нахождение токена, временя действия токена и id.
             token = l.Split('&')[0].Split('=')[1];
             id = l.Split('=')[3];
-            string crypto_token = Crypto.Encrypt(token, "ididitjustforlulz");
-            string crypto_id = Crypto.Encrypt(id, "ididitjustforlulz");
+            //string crypto_token = Crypto.Encrypt(token, "ididitjustforlulz");
+            //string crypto_id = Crypto.Encrypt(id, "ididitjustforlulz");
 
             using (FileStream fs = File.OpenWrite(path_data))
             {
                 // Перевод id в байты.
-                string idnl = crypto_id + Environment.NewLine;
+                string idnl = id + Environment.NewLine;
                 byte[] idbyte = UTF8Encoding.UTF8.GetBytes(idnl);
 
                 // Запись id в файл.
@@ -56,7 +56,7 @@ namespace PluginVK
 
                 // Создание байтового токена.
                 byte[] info =
-                    new UTF8Encoding(true).GetBytes(crypto_token);
+                    new UTF8Encoding(true).GetBytes(token);
 
                 // Запись токена в файл.
                 fs.Write(info, 0, info.Length);
@@ -65,10 +65,7 @@ namespace PluginVK
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int count = Verification.count;
-            string path_onlineusers = Verification.path_onlineusers;
-
-            Check.CheckRun(token, id, path_onlineusers, count);
+            Check.CheckRun(token, id, Verification.path_onlineusers, Verification.count);
             this.Close();
         }
     }

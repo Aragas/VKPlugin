@@ -94,12 +94,6 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Version.cs">
-      <Link>Version.cs</Link>
-    </Compile>
-    <Compile Include="..\API\RainmeterAPI.cs">
-      <Link>RainmeterAPI.cs</Link>
-    </Compile>
     <Compile Include="Crypto.cs" />
     <Compile Include="OAuth.cs">
       <SubType>Form</SubType>
@@ -111,6 +105,7 @@
     <Compile Include="Check.cs" />
     <Compile Include="Methods\Messages.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="RainmeterAPI.cs" />
     <Compile Include="Verification.cs" />
     <Compile Include="Methods\Friends.cs" />
   </ItemGroup>
