@@ -33,8 +33,6 @@ namespace PluginVK
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            string path_data = Verification.path_data;
-
             // Изъятие из URL строки.
             string url = webBrowser1.Url.ToString();
             string l = url.Split('#')[1];
@@ -42,13 +40,13 @@ namespace PluginVK
             // Нахождение токена, временя действия токена и id.
             token = l.Split('&')[0].Split('=')[1];
             id = l.Split('=')[3];
-            //string crypto_token = Crypto.Encrypt(token, "ididitjustforlulz");
-            //string crypto_id = Crypto.Encrypt(id, "ididitjustforlulz");
+            string crypto_token = Crypto.Encrypt(token, "ididitjustforlulz");
+            string crypto_id = Crypto.Encrypt(id, "ididitjustforlulz");
 
-            using (FileStream fs = File.OpenWrite(path_data))
+            using (FileStream fs = File.OpenWrite(Verification.path_data))
             {
                 // Перевод id в байты.
-                string idnl = id + Environment.NewLine;
+                string idnl = crypto_id + Environment.NewLine;
                 byte[] idbyte = UTF8Encoding.UTF8.GetBytes(idnl);
 
                 // Запись id в файл.
@@ -56,7 +54,7 @@ namespace PluginVK
 
                 // Создание байтового токена.
                 byte[] info =
-                    new UTF8Encoding(true).GetBytes(token);
+                    new UTF8Encoding(true).GetBytes(crypto_token);
 
                 // Запись токена в файл.
                 fs.Write(info, 0, info.Length);

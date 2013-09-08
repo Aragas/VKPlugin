@@ -26,9 +26,9 @@ namespace PluginVK
     static class Verification
     {
         // Главные параметры конфигурции.
-        public static string data_name = "Data.rmg";
-        public static string onlineusers_name = "OnlineUsers.rmg";
-        public static string dir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Rainmeter\\Plugins\\VKPugin\\";
+        public static string data_name = "Data.tmp";
+        public static string onlineusers_name = "OnlineUsers.tmp";
+        public static string dir = Environment.GetEnvironmentVariable("TEMP") + "\\";
         public static string path_data = dir + data_name;
         public static string path_onlineusers = dir + onlineusers_name;
         public static int count = 5;
@@ -37,6 +37,7 @@ namespace PluginVK
         {
             // Первичные значения (Из-за using).
             string id = "";
+            string crypto_id = "";
             string token = "";
 
             // Проверка файла на существование.
@@ -53,9 +54,12 @@ namespace PluginVK
             using (StreamReader sr = new StreamReader(path_data, Encoding.UTF8))
             {
                 id = sr.ReadLine();
-                token = sr.ReadLine();
-                //id = Crypto.Decrypt(sr.ReadLine(), "ididitjustforlulz");
-                //token = Crypto.Decrypt(sr.ReadLine(), "ididitjustforlulz");
+
+                if (id != null)
+                {
+                    crypto_id = Crypto.Decrypt(id, "ididitjustforlulz");
+                    token = Crypto.Decrypt(sr.ReadLine(), "ididitjustforlulz");
+                }
             }
 
             // Проверка существования данных.
@@ -65,7 +69,7 @@ namespace PluginVK
             }
             else
             {
-                Check.CheckRun(token, id, path_onlineusers, count);
+                Check.CheckRun(token, crypto_id, path_onlineusers, count);
             }
 
         }
