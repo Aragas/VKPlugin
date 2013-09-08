@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace VKPlugin
+namespace PluginVK
 {
     static class Verification
     {
@@ -33,14 +33,14 @@ namespace VKPlugin
             // Чтение параметров.
             using (StreamReader sr = new StreamReader(path_data, Encoding.UTF8))
             {
-                id = sr.ReadLine();
-                token = sr.ReadLine();
+                id = Crypto.Decrypt(sr.ReadLine(), "ididitjustforlulz");
+                token = Crypto.Decrypt(sr.ReadLine(), "ididitjustforlulz");
             }
 
             // Проверка существования данных.
             if (id == null)
             {
-                Aauth.AauthRun();
+                OAuth.OAuthRun();
             }
             else
             {
