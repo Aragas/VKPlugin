@@ -1,0 +1,5 @@
+C:\Users\Aragas\Documents\GitHub\TestBench\x32\Release\VKPlugin.dll
+C:\Users\Aragas\Documents\GitHub\VKPlugin\VKPlugin\obj\x86\Release\PluginVK.csprojResolveAssemblyReference.cache
+C:\Users\Aragas\Documents\GitHub\VKPlugin\VKPlugin\obj\x86\Release\PluginVK.OAuth.resources
+C:\Users\Aragas\Documents\GitHub\VKPlugin\VKPlugin\obj\x86\Release\PluginVK.csproj.GenerateResource.Cache
+C:\Users\Aragas\Documents\GitHub\VKPlugin\VKPlugin\obj\x86\Release\VKPlugin.dll
