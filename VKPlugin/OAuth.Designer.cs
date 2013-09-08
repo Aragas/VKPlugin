@@ -47,14 +47,14 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Aauth
+            // OAuth
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.webBrowser1);
             this.DoubleBuffered = true;
-            this.Name = "Aauth";
+            this.Name = "OAuth";
             this.ResumeLayout(false);
 
         }
