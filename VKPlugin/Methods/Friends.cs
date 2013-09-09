@@ -58,7 +58,7 @@ namespace PluginVK
 
             if (sucheck == sucheckerror)
             {
-                return "error";
+                return null;
             }
 
             // Фильтрация документа по параметру.
@@ -99,9 +99,9 @@ namespace PluginVK
 
         public static string ConvertFriendsOnline(string document, string path)
         {
-            if (document == "error")
+            if (document == null)
             {
-                return "error";
+                return null;
             }
 
             string text = "";

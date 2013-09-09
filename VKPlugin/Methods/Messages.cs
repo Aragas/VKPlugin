@@ -49,12 +49,12 @@ namespace PluginVK
 
             if (sucheck == sucheckerror)
             {
-                return "error";
+                return null;
             }
 
             if (sucheck == sucheckerror2)
             {
-                return "error";
+                return null;
             }
 
             string countstring = "0";

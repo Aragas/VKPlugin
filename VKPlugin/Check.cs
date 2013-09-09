@@ -26,13 +26,13 @@ namespace PluginVK
         public static void CheckRun(string token, string id, string path, int count)
         {
             string text1 = Friends.ConvertFriendsOnline(Friends.ParseFriendsOnline(token, id, count), path);
-            if (text1 == "error")
+            if (text1 == null)
             {
                 OAuth.OAuthRun();
             }
 
             string text2 = Messages.UnReadedMessages(token, id);
-            if (text2 == "error")
+            if (text2 == null)
             {
                 OAuth.OAuthRun();
             }
