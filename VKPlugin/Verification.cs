@@ -69,7 +69,7 @@ namespace PluginVK
             }
             else
             {
-                Check.CheckRun(token, crypto_id, path_onlineusers, count);
+                GetInfo.RunGetInfo(token, crypto_id, path_onlineusers, count);
             }
 
         }

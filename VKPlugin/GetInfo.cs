@@ -21,9 +21,9 @@ using System.IO;
 
 namespace PluginVK
 {
-    static class Check
+    static class GetInfo
     {
-        public static void CheckRun(string token, string id, string path, int count)
+        public static void RunGetInfo(string token, string id, string path, int count)
         {
             string text1 = Friends.ConvertFriendsOnline(Friends.ParseFriendsOnline(token, id, count), path);
             if (text1 == null)

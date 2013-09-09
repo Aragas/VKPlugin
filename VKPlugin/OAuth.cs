@@ -63,7 +63,7 @@ namespace PluginVK
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Check.CheckRun(token, id, Verification.path_onlineusers, Verification.count);
+            GetInfo.RunGetInfo(token, id, Verification.path_onlineusers, Verification.count);
             this.Close();
         }
     }
