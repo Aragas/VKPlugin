@@ -50,13 +50,13 @@ namespace PluginVK
             // Detecting error.
             if (sucheck == sucheckerror)
             {
-                return "error";
+                return null;
             }
 
             // Detecting error.
             if (sucheck == sucheckerror2)
             {
-                return "error";
+                return null;
             }
 
             string countstring = "0";

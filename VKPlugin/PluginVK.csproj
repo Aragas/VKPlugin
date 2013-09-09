@@ -110,9 +110,6 @@
     <Compile Include="Methods\Friends.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="OAuth.en-GB.resx">
-      <DependentUpon>OAuth.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="OAuth.resx">
       <DependentUpon>OAuth.cs</DependentUpon>
     </EmbeddedResource>

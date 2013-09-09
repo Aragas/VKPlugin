@@ -58,7 +58,7 @@ namespace PluginVK
             // Detecting error request.
             if (sucheck == sucheckerror)
             {
-                return "error";
+                return null;
             }
 
             // Preparing document for filtration.
@@ -101,9 +101,9 @@ namespace PluginVK
         public static string ConvertFriendsOnline(string document, string path)
         {
             // Detecting error.
-            if (document == "error")
+            if (document == null)
             {
-                return "error";
+                return null;
             }
 
             string text = "";

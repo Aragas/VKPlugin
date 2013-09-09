@@ -28,7 +28,7 @@ namespace PluginVK
             // Get friendlist.
             string text1 = Friends.ConvertFriendsOnline(Friends.ParseFriendsOnline(token, id, count), path);
             // Error checking.
-            if (text1 == "error")
+            if (text1 == null)
             {
                 OAuth.OAuthRun();
             }
@@ -36,7 +36,7 @@ namespace PluginVK
             // Get messages info.
             string text2 = Messages.UnReadMessages(token, id);
             // Error checking.
-            if (text2 == "error")
+            if (text2 == null)
             {
                 OAuth.OAuthRun();
             }

@@ -45,6 +45,9 @@ namespace Rainmeter
         private extern static unsafe double RmReadFormula(void* rm, char* option, double defValue);
 
         [DllImport("Rainmeter.dll", CharSet = CharSet.Auto)]
+        private extern static unsafe char* RmReplaceVariables(void* rm, char* str);
+
+        [DllImport("Rainmeter.dll", CharSet = CharSet.Auto)]
         private extern static unsafe char* RmPathToAbsolute(void* rm, char* relativePath);
 
         [DllImport("Rainmeter.dll", CharSet = CharSet.Auto)]
@@ -64,9 +67,9 @@ namespace Rainmeter
             Debug = 4
         }
 
-        public unsafe string ReadString(string option, string defValue)
+        public unsafe string ReadString(string option, string defValue, bool replaceMeasures = true)
         {
-            char* value = RmReadString((void*)m_Rm, ToUnsafe(option), ToUnsafe(defValue), 1);
+            char* value = RmReadString((void*)m_Rm, ToUnsafe(option), ToUnsafe(defValue), replaceMeasures ? 1 : 0);
             return new string(value);
         }
 
@@ -87,6 +90,12 @@ namespace Rainmeter
             return (int)RmReadFormula((void*)m_Rm, ToUnsafe(option), defValue);
         }
 
+        public unsafe string ReplaceVariables(string str)
+        {
+            char* value = RmReplaceVariables((void*)m_Rm, ToUnsafe(str));
+            return new string(value);
+        }
+
         public unsafe string GetMeasureName()
         {
             char* value = (char*)RmGet((void*)m_Rm, 0);
@@ -96,6 +105,23 @@ namespace Rainmeter
         public unsafe IntPtr GetSkin()
         {
             return (IntPtr)RmGet((void*)m_Rm, 1);
+        }
+
+        public unsafe string GetSettingsFile()
+        {
+            char* value = (char*)RmGet((void*)m_Rm, 2);
+            return new string(value);
+        }
+
+        public unsafe string GetSkinName()
+        {
+            char* value = (char*)RmGet((void*)m_Rm, 3);
+            return new string(value);
+        }
+
+        public unsafe IntPtr GetSkinWindow()
+        {
+            return (IntPtr)RmGet((void*)m_Rm, 4);
         }
 
         public static unsafe void Execute(IntPtr skin, string command)

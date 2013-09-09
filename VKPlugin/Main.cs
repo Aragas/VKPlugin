@@ -27,30 +27,12 @@ namespace PluginVK
 {
     internal class Measure
     {
-        enum MeasureType
-        {
-            Value
-        }
-
-        MeasureType Type = MeasureType.Value;
-
         internal Measure()
         {
         }
 
         internal void Reload(Rainmeter.API rm, ref double maxValue)
         {
-            string type = rm.ReadString("Type", "");
-            switch (type.ToLowerInvariant())
-            {
-                case "Value":
-                    Type = MeasureType.Value;
-                    break;
-
-                default:
-                    API.Log(API.LogType.Error, "VKPlugin.dll: Type=" + type + " not valid");
-                    break;
-            }
         }
 
         internal double Update()
@@ -64,16 +46,6 @@ namespace PluginVK
             return 0.0;
         }
 
-        internal string GetString()
-        {
-            switch (Type)
-            {
-                case MeasureType.Value:
-                    return "Plugin is working";
-            }
-
-            return null;
-        }
     }
 
     #region Plugin
@@ -110,12 +82,6 @@ namespace PluginVK
             return Measures[id].Update();
         }
 
-        [DllExport]
-        public unsafe static char* GetString(void* data)
-        {
-            uint id = (uint)data;
-            fixed (char* s = Measures[id].GetString()) return s;
-        }
     }
     #endregion
 }

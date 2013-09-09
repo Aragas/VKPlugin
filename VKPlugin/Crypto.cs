@@ -53,7 +53,7 @@ namespace PluginVK
             }
             catch (CryptographicException)
             {
-                return "error";
+                return null;
             }
 
             return Result;
