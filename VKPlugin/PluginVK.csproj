@@ -152,6 +152,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>"$(SolutionDir)..\API\DllExporter.exe" "$(ConfigurationName)" "$(PlatformName)" "$(TargetDir)\" "$(TargetFileName)"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>
