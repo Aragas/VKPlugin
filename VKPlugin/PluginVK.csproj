@@ -86,7 +86,14 @@
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>packages\log4net.2.0.1\lib\net20-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -94,23 +101,45 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Crypto.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="GetInfo.cs" />
-    <Compile Include="Methods\Messages.cs" />
-    <Compile Include="Main.cs" />
-    <Compile Include="OAuth.cs">
+    <Compile Include="Forms\ExceptionCatch.cs" />
+    <Compile Include="Forms\ExceptionDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OAuth.designer.cs">
+    <Compile Include="Forms\ExceptionDialog.designer.cs">
+      <DependentUpon>ExceptionDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GitHubDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GitHubDialog.designer.cs">
+      <DependentUpon>GitHubDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OAuth.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OAuth.Designer.cs">
       <DependentUpon>OAuth.cs</DependentUpon>
     </Compile>
-    <Compile Include="RainmeterAPI.cs" />
-    <Compile Include="Verification.cs" />
+    <Compile Include="Methods\Crypto.cs" />
     <Compile Include="Methods\Friends.cs" />
+    <Compile Include="Methods\Messages.cs" />
+    <Compile Include="Properties\AssemblyInfo.log4net.cs" />
+    <Compile Include="Verification.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="OAuth.resx">
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\ExceptionDialog.resx">
+      <DependentUpon>ExceptionDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GitHubDialog.resx">
+      <DependentUpon>GitHubDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OAuth.resx">
       <DependentUpon>OAuth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

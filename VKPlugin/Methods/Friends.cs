@@ -22,11 +22,17 @@ using System.IO;
 using System.Text;
 using System.Xml;
 
-namespace PluginVK
+namespace PluginVK.Methods
 {
-    static class Friends
+    public class Friends
     {
-        public static string ParseFriendsOnline(string token, string id, int count)
+        public string token { get; set; }
+        public string id { get; set;  }
+        public int count { get; set; }
+        public string path { get; set; }
+
+        private string _document { get { return document(token, id, count); } }
+        private string document(string token, string id, int count)
         {
             // Первичные значения (Из-за using).
             string DocumentString = "";
@@ -97,9 +103,9 @@ namespace PluginVK
             return DocumentString;
         }
 
-        public static string ConvertFriendsOnline(string document, string path)
+        public string ConvertFriendsOnline()
         {
-            if (document == null)
+            if (_document == null)
             {
                 return null;
             }
@@ -110,7 +116,7 @@ namespace PluginVK
             using (Stream onlinems = new MemoryStream())
             {
                 XmlDocument doc0 = new XmlDocument();
-                doc0.LoadXml(document);
+                doc0.LoadXml(_document);
 
                 // Запись параметров пользователей.
                 foreach (XmlNode node in doc0.SelectNodes("//user"))

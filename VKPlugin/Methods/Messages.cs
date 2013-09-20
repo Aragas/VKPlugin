@@ -20,11 +20,14 @@
 using System;
 using System.Xml;
 
-namespace PluginVK
+namespace PluginVK.Methods
 {
-    public static class Messages
+    public class Messages
     {
-        public static string UnReadedMessages(string token, string id)
+        public string token { get; set; }
+        public string id { get; set; }
+
+        public string UnReadedMessages()
         {
             // Параметры.
             string method = "messages.get.xml?";

@@ -17,61 +17,107 @@
 
 */
 
+using PluginVK.Forms;
+using PluginVK.Methods;
 using System;
 using System.IO;
 using System.Text;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace PluginVK
 {
     static class Verification
     {
-        // Главные параметры конфигурции.
-        public static string data_name = "Data.tmp";
-        public static string onlineusers_name = "OnlineUsers.tmp";
-        public static string dir = Environment.GetEnvironmentVariable("TEMP") + "\\";
-        public static string path_data = dir + data_name;
-        public static string path_onlineusers = dir + onlineusers_name;
-        public static int count = 5;
+        private static string crypted_id { get; set; }
+        private static string id { get; set; }
+        private static string token { get; set; }
 
-        public static void Main()
+        public static void Run()
         {
-            // Первичные значения (Из-за using).
-            string id = "";
-            string crypto_id = "";
-            string token = "";
-
             // Проверка файла на существование.
-            if (!Directory.Exists(dir))
+            if (!Directory.Exists(Constants.dir))
             {
-                Directory.CreateDirectory(dir);
+                Directory.CreateDirectory(Constants.dir);
             }
-            if (!File.Exists(path_data))
+            if (!File.Exists(Constants.path_data))
             {
-                using (FileStream stream = File.Create(path_data)) { }
+                using (FileStream stream = File.Create(Constants.path_data)) { }
             }
 
             // Чтение параметров.
-            using (StreamReader sr = new StreamReader(path_data, Encoding.UTF8))
+            using (StreamReader sr = new StreamReader(Constants.path_data, Encoding.UTF8))
             {
-                id = sr.ReadLine();
+                crypted_id = sr.ReadLine();
 
-                if (id != null)
+                if (crypted_id != null)
                 {
-                    crypto_id = Crypto.Decrypt(id, "ididitjustforlulz");
-                    token = Crypto.Decrypt(sr.ReadLine(), "ididitjustforlulz");
+                    Crypto cr = new Crypto();
+                    id = cr.Decrypt(crypted_id, "ididitjustforlulz");
+                    token = cr.Decrypt(sr.ReadLine(), "ididitjustforlulz");
                 }
             }
 
             // Проверка существования данных.
-            if (id == null)
+            if (crypted_id == null)
             {
-                OAuth.OAuthRun();
+                OAuth oa = new OAuth();
+                oa._token = token;
+                oa._id = id;
+                Application.Run(oa);
             }
             else
             {
-                GetInfo.RunGetInfo(token, crypto_id, path_onlineusers, count);
+                GetInfo();
             }
 
+        }
+
+        public static void GetInfo()
+        {
+            var path = Constants.path_onlineusers;
+            string text = Friends() + Messages() + "&";
+            if (Friends() == null || Messages() == null)
+            {
+                OAuth oa = new OAuth();
+                oa._token = token;
+                oa._id = id;
+                Application.Run(oa);
+            }
+
+            // Проверка файла на существование.
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+                using (FileStream stream = File.Create(path)) { }
+            }
+            else
+            {
+                using (FileStream stream = File.Create(path)) { }
+            }
+
+            using (StreamWriter outfile = new StreamWriter(path))
+            {
+                outfile.Write(text);
+            }
+        }
+
+        public static string Friends()
+        {
+            Friends fr = new Friends();
+            fr.token = token;
+            fr.id = id;
+            fr.path = Constants.path_onlineusers;
+            fr.count = Constants.count;
+            return fr.ConvertFriendsOnline();
+        }
+
+        public static string Messages()
+        {
+            Messages ms = new Messages();
+            ms.token = token;
+            ms.id = id;
+            return ms.UnReadedMessages();
         }
 
     }

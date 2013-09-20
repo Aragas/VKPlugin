@@ -19,9 +19,9 @@
 
 using System;
 using System.Collections.Generic;
-using Rainmeter;
+using PluginVK;
 
-namespace PluginVK
+namespace Rainmeter
 {
     internal class Measure
     {
@@ -42,7 +42,7 @@ namespace PluginVK
         {
             try
             {
-                Verification.Main();
+                Verification.Run();
             }
             catch { }
 

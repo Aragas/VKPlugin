@@ -24,23 +24,14 @@ using System.Text;
 
 namespace PluginVK
 {
-    class Crypto
+    public class Crypto
     {
-        /// Шифрует строку value
-        /// 
-        /// Строка которую необходимо зашифровать
-        /// Ключ шифрования
-        public static string Encrypt(string str, string keyCrypt)
+        public string Encrypt(string str, string keyCrypt)
         {
             return Convert.ToBase64String(Encrypt(Encoding.UTF8.GetBytes(str), keyCrypt));
         }
 
-        /// Расшифроывает данные из строки value
-        /// 
-        /// Зашифрованая строка
-        /// Ключ шифрования
-        /// Возвращает null, если прочесть данные не удалось
-        public static string Decrypt(string str, string keyCrypt)
+        public string Decrypt(string str, string keyCrypt)
         {
             string Result;
             try
@@ -64,7 +55,7 @@ namespace PluginVK
             return Result;
         }
 
-        private static byte[] Encrypt(byte[] key, string value)
+        private byte[] Encrypt(byte[] key, string value)
         {
             SymmetricAlgorithm Sa = Rijndael.Create();
             ICryptoTransform Ct = Sa.CreateEncryptor((new PasswordDeriveBytes(value, null)).GetBytes(16), new byte[16]);
@@ -88,7 +79,7 @@ namespace PluginVK
             return Result;
         }
 
-        private static CryptoStream InternalDecrypt(byte[] key, string value)
+        private CryptoStream InternalDecrypt(byte[] key, string value)
         {
             SymmetricAlgorithm sa = Rijndael.Create();
             ICryptoTransform ct = sa.CreateDecryptor((new PasswordDeriveBytes(value, null)).GetBytes(16), new byte[16]);
