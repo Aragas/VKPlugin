@@ -24,7 +24,7 @@ using System.Text;
 
 namespace PluginVK
 {
-    class Crypto
+    static class Crypto
     {
         // Encryption.
         public static string Encrypt(string str, string keyCrypt)
