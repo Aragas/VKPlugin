@@ -113,7 +113,13 @@
     <Compile Include="Verification.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\OAuth.en.resx">
+      <DependentUpon>OAuth.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\OAuth.resx">
+      <DependentUpon>OAuth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OAuth.ru.resx">
       <DependentUpon>OAuth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

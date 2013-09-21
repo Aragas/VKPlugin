@@ -17,10 +17,8 @@
 
 */
 
-using System;
 using System.IO;
 using System.Text;
-using System.Threading;
 
 namespace PluginVK
 {
@@ -68,9 +66,6 @@ namespace PluginVK
                 g.token = token;
                 g.id = id;
                 g.GetInfo();
-                //Thread t = new Thread(new ThreadStart(g.GetInfo));
-                //t.Start();
-                //t.Join();
             }
 
         }

@@ -20,7 +20,6 @@
 using System;
 using System.IO;
 using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace PluginVK
@@ -84,10 +83,7 @@ namespace PluginVK
             Get g = new Get();
             g.token = token;
             g.id = id;
-            //g.GetInfo();
-            Thread t = new Thread(new ThreadStart(g.GetInfo));
-            t.Start();
-            t.Join();
+            g.GetInfo();
 
             this.Close();
         }
