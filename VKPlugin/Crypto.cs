@@ -26,7 +26,6 @@ namespace PluginVK
 {
     class Crypto
     {
-
         // Encryption.
         public static string Encrypt(string str, string keyCrypt)
         {
@@ -37,50 +36,34 @@ namespace PluginVK
         // Return "error" by error.
         public static string Decrypt(string str, string keyCrypt)
         {
-            string Result;
-            try
+            if (str != null)
             {
-                CryptoStream Cs = InternalDecrypt(Convert.FromBase64String(str), keyCrypt);
-                StreamReader Sr = new StreamReader(Cs);
-
-                Result = Sr.ReadToEnd();
-
-                Cs.Close();
-                Cs.Dispose();
-
-                Sr.Close();
-                Sr.Dispose();
+                using (CryptoStream Cs = InternalDecrypt(Convert.FromBase64String(str), keyCrypt))
+                using (StreamReader Sr = new StreamReader(Cs))
+                {
+                    return Sr.ReadToEnd();
+                }
             }
-            catch (CryptographicException)
+            else
             {
                 return null;
             }
-
-            return Result;
         }
 
         private static byte[] Encrypt(byte[] key, string value)
         {
-            SymmetricAlgorithm Sa = Rijndael.Create();
-            ICryptoTransform Ct = Sa.CreateEncryptor((new PasswordDeriveBytes(value, null)).GetBytes(16), new byte[16]);
+            using (SymmetricAlgorithm Sa = Rijndael.Create())
+            using (ICryptoTransform Ct = Sa.CreateEncryptor((new PasswordDeriveBytes(value, null)).GetBytes(16), new byte[16]))
+            using (MemoryStream Ms = new MemoryStream())
+            using (CryptoStream Cs = new CryptoStream(Ms, Ct, CryptoStreamMode.Write))
+            {
 
-            MemoryStream Ms = new MemoryStream();
-            CryptoStream Cs = new CryptoStream(Ms, Ct, CryptoStreamMode.Write);
+                Cs.Write(key, 0, key.Length);
+                Cs.FlushFinalBlock();
 
-            Cs.Write(key, 0, key.Length);
-            Cs.FlushFinalBlock();
-
-            byte[] Result = Ms.ToArray();
-
-            Ms.Close();
-            Ms.Dispose();
-
-            Cs.Close();
-            Cs.Dispose();
-
-            Ct.Dispose();
-
-            return Result;
+                byte[] Result = Ms.ToArray();
+                return Result;
+            }
         }
 
         private static CryptoStream InternalDecrypt(byte[] key, string value)

@@ -37,11 +37,11 @@ namespace PluginVK
 
         internal double Update()
         {
-            try
-            {
-                Verification.Main();
-            }
-            catch { }
+            //try
+            //{
+            Verification.Main();
+            //}
+            //catch { }
 
             return 0.0;
         }

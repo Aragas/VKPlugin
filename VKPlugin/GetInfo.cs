@@ -18,6 +18,7 @@
 */
 
 using System.IO;
+using System.Threading;
 
 namespace PluginVK
 {
@@ -25,18 +26,30 @@ namespace PluginVK
     {
         public static void RunGetInfo(string token, string id, string path, int count)
         {
-            // Get friendlist.
-            string text1 = Friends.ConvertFriendsOnline(Friends.ParseFriendsOnline(token, id, count), path);
-            // Error checking.
-            if (text1 == null)
-            {
-                OAuth.OAuthRun();
-            }
+            string text1 = null;
+            string text2 = null;
 
-            // Get messages info.
-            string text2 = Messages.UnReadMessages(token, id);
+            #region Friends
+            Thread t1 = new Thread(delegate()
+            {
+                text1 = Friends.ConvertFriendsOnline(Friends.ParseFriendsOnline(token, id, count), path);
+            });
+            t1.Start();
+            #endregion
+
+            #region Messages
+            Thread t2 = new Thread(delegate()
+            {
+                text2 = Messages.UnReadMessages(token, id);
+            });
+            t2.Start();
+            #endregion
+
+            t1.Join();
+            t2.Join();
+
             // Error checking.
-            if (text2 == null)
+            if (text1 == null || text2 == null)
             {
                 OAuth.OAuthRun();
             }
