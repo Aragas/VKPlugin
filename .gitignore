@@ -14,3 +14,7 @@ VKPlugin/obj/x86/Release/PluginVK.csprojResolveAssemblyReference.cache
 VKPlugin/obj/x86/Release/PluginVK.OAuth.resources
 VKPlugin/PluginVK.v11.suo
 VKPlugin/PluginVK.sln
+VKPlugin/obj/x64/Release/PluginVK.OAuth.en.resources
+VKPlugin/obj/x64/Release/PluginVK.OAuth.ru.resources
+VKPlugin/obj/x86/Release/PluginVK.OAuth.en.resources
+VKPlugin/obj/x86/Release/PluginVK.OAuth.ru.resources
