@@ -17,24 +17,22 @@
 
 */
 
-using PluginVK.Forms;
-using PluginVK.Methods;
 using System;
 using System.IO;
 using System.Text;
 using System.Threading;
-using System.Windows.Forms;
 
 namespace PluginVK
 {
-    static class Verification
+    public class Verification
     {
-        private static string crypted_id { get; set; }
-        private static string id { get; set; }
-        private static string token { get; set; }
+        string crypted_id = null;
+        string id = null;
+        string token = null;
 
-        public static void Run()
+        public void Main()
         {
+            #region Dir
             // Проверка файла на существование.
             if (!Directory.Exists(Constants.dir))
             {
@@ -44,6 +42,7 @@ namespace PluginVK
             {
                 using (FileStream stream = File.Create(Constants.path_data)) { }
             }
+            #endregion
 
             // Чтение параметров.
             using (StreamReader sr = new StreamReader(Constants.path_data, Encoding.UTF8))
@@ -61,64 +60,19 @@ namespace PluginVK
             // Проверка существования данных.
             if (crypted_id == null)
             {
-                OAuth oa = new OAuth();
-                oa._token = token;
-                oa._id = id;
-                Application.Run(oa);
+                OAuth.OAuthRun();
             }
             else
             {
-                GetInfo();
+                Get g = new Get();
+                g.token = token;
+                g.id = id;
+                g.GetInfo();
+                //Thread t = new Thread(new ThreadStart(g.GetInfo));
+                //t.Start();
+                //t.Join();
             }
 
         }
-
-        public static void GetInfo()
-        {
-            var path = Constants.path_onlineusers;
-            string text = Friends() + Messages() + "&";
-            if (Friends() == null || Messages() == null)
-            {
-                OAuth oa = new OAuth();
-                oa._token = token;
-                oa._id = id;
-                Application.Run(oa);
-            }
-
-            // Проверка файла на существование.
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-                using (FileStream stream = File.Create(path)) { }
-            }
-            else
-            {
-                using (FileStream stream = File.Create(path)) { }
-            }
-
-            using (StreamWriter outfile = new StreamWriter(path))
-            {
-                outfile.Write(text);
-            }
-        }
-
-        public static string Friends()
-        {
-            Friends fr = new Friends();
-            fr.token = token;
-            fr.id = id;
-            fr.path = Constants.path_onlineusers;
-            fr.count = Constants.count;
-            return fr.ConvertFriendsOnline();
-        }
-
-        public static string Messages()
-        {
-            Messages ms = new Messages();
-            ms.token = token;
-            ms.id = id;
-            return ms.UnReadedMessages();
-        }
-
     }
 }

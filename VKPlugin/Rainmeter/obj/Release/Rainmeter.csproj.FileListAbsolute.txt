@@ -1,0 +1,10 @@
+C:\Users\Aragas\Documents\GitHub\VKPlugin\VKPlugin\Rainmeter\obj\Release\Rainmeter.csprojResolveAssemblyReference.cache
+C:\Users\Aragas\Documents\GitHub\VKPlugin\VKPlugin\Rainmeter\bin\Release\Rainmeter.dll
+C:\Users\Aragas\Documents\GitHub\VKPlugin\VKPlugin\Rainmeter\bin\Release\Rainmeter.pdb
+C:\Users\Aragas\Documents\GitHub\VKPlugin\VKPlugin\Rainmeter\bin\Release\log4net.dll
+C:\Users\Aragas\Documents\GitHub\VKPlugin\VKPlugin\Rainmeter\bin\Release\log4net.xml
+C:\Users\Aragas\Documents\GitHub\VKPlugin\VKPlugin\Rainmeter\obj\Release\Rainmeter.dll
+C:\Users\Aragas\Documents\GitHub\VKPlugin\VKPlugin\Rainmeter\obj\Release\Rainmeter.pdb
+C:\Users\Aragas\Documents\GitHub\VKPlugin\VKPlugin\Rainmeter\bin\Release\VKPlugin.dll
+C:\Users\Aragas\Documents\GitHub\VKPlugin\TestBench\x64\Release\Rainmeter.dll
+C:\Users\Aragas\Documents\GitHub\VKPlugin\TestBench\x64\Release\Rainmeter.pdb

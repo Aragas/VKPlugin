@@ -30,7 +30,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace VKPlugin.Forms
+namespace PluginVK
 {
 	/// <summary>
 	/// Dialog for showing exceptions, allows user to send an error report.

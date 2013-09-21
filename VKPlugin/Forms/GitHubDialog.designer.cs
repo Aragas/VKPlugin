@@ -27,7 +27,7 @@
  * "Minecraft" is a trademark of Mojang AB.
  */
 
-namespace VKPlugin.Forms
+namespace PluginVK
 {
 	partial class GitHubDialog
 	{

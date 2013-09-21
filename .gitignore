@@ -58,3 +58,7 @@ VKPlugin/obj/x86/Release/PluginVK.Forms.OAuth.resources
 VKPlugin/obj/x86/Release/VKPlugin.Forms.ExceptionDialog.resources
 VKPlugin/obj/x86/Release/VKPlugin.Forms.GitHubDialog.resources
 VKPlugin/Rainmeter/obj/Release/build.force
+TestBench/x64/Release/log4net.xml
+VKPlugin/obj/x64/Debug/build.force
+VKPlugin/obj/x86/Debug/build.force
+VKPlugin/obj/x86/Release/build.force

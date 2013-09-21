@@ -28,8 +28,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PluginVK
 {
@@ -39,30 +37,13 @@ namespace PluginVK
 	internal static class Constants
 	{
 		#region Content
-        internal static string data_name = "Data.tmp";
-        internal static string onlineusers_name = "OnlineUsers.tmp";
-        internal static string dir = Environment.GetEnvironmentVariable("TEMP") + "\\";
-        internal static string path_data = dir + data_name;
-        internal static string path_onlineusers = dir + onlineusers_name;
-        internal static int count = 5;
+        public static string data_name = "Data.tmp";
+        public static string onlineusers_name = "OnlineUsers.tmp";
+        public static string dir = Environment.GetEnvironmentVariable("TEMP") + "\\";
+        public static string path_data = dir + data_name;
+        public static string path_onlineusers = dir + onlineusers_name;
+        public static int count = 5;
 		#endregion
 
-		#region Configuration
-		/// <summary>
-		/// Directory where all settings are stored.
-		/// </summary>
-		internal const string SettingsDirectory = "settings";
-		/// <summary>
-		/// File containing info about the git commit from which this version was built.
-		/// </summary>
-		internal static string GitInfoFile { get { return SettingsDirectory + "\\gitinfo"; } }
-		#endregion
-
-		#region Data
-		/// <summary>
-		/// Directory where various data is stored.
-		/// </summary>
-		internal const string DataDirectory = "data";
-		#endregion
 	}
 }

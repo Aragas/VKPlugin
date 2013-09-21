@@ -20,7 +20,7 @@
 using System;
 using System.Xml;
 
-namespace PluginVK.Methods
+namespace PluginVK
 {
     public class Messages
     {

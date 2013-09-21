@@ -18,26 +18,27 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace PluginVK.Forms
+namespace PluginVK
 {
     public partial class OAuth : Form
     {
-        public string _token { get; set; }
-        public string _id { get; set; }
+        string token = null;
+        string id = null;
+
+        public static void OAuthRun()
+        {
+            Application.Run(new OAuth());
+        }
+
 
         public OAuth()
         {
             InitializeComponent();
-
 
             // Переход по ссылке.
             string url = "https://oauth.vk.com/authorize?client_id=3328403"
@@ -54,11 +55,11 @@ namespace PluginVK.Forms
             string l = url.Split('#')[1];
 
             // Нахождение токена, временя действия токена и id.
-            _token = l.Split('&')[0].Split('=')[1];
-            _id = l.Split('=')[3];
+            token = l.Split('&')[0].Split('=')[1];
+            id = l.Split('=')[3];
             Crypto cr = new Crypto();
-            string crypto_token = cr.Encrypt(_token, "ididitjustforlulz");
-            string crypto_id = cr.Encrypt(_id, "ididitjustforlulz");
+            string crypto_token = cr.Encrypt(token, "ididitjustforlulz");
+            string crypto_id = cr.Encrypt(id, "ididitjustforlulz");
 
             using (FileStream fs = File.OpenWrite(Constants.path_data))
             {
@@ -80,7 +81,14 @@ namespace PluginVK.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Verification.GetInfo();
+            Get g = new Get();
+            g.token = token;
+            g.id = id;
+            //g.GetInfo();
+            Thread t = new Thread(new ThreadStart(g.GetInfo));
+            t.Start();
+            t.Join();
+
             this.Close();
         }
     }

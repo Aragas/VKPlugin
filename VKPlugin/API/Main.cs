@@ -19,7 +19,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using PluginVK;
+using System.Threading;
 
 namespace Rainmeter
 {
@@ -40,11 +42,12 @@ namespace Rainmeter
 
         internal double Update()
         {
-            try
-            {
-                Verification.Main();
-            }
-            catch { }
+            //try
+            //{
+                Verification v = new Verification();
+                v.Main();
+            //}
+            //catch { }
 
             return 0.0;
         }

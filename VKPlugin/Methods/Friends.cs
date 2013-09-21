@@ -22,7 +22,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 
-namespace PluginVK.Methods
+namespace PluginVK
 {
     public class Friends
     {

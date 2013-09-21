@@ -1,4 +1,4 @@
-﻿namespace PluginVK.Forms
+﻿namespace PluginVK
 {
     partial class OAuth
     {

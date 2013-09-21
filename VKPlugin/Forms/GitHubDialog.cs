@@ -33,7 +33,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace VKPlugin.Forms
+namespace PluginVK
 {
 	/// <summary>
 	/// Dialog used to generate GitHub issue messages.
