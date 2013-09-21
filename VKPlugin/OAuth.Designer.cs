@@ -55,6 +55,7 @@
             this.Controls.Add(this.webBrowser1);
             this.DoubleBuffered = true;
             this.Name = "OAuth";
+            this.Load += new System.EventHandler(this.OAuth_Load);
             this.ResumeLayout(false);
 
         }

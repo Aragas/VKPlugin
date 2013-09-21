@@ -64,5 +64,10 @@ namespace PluginVK
             GetInfo.RunGetInfo(token, id, Verification.path_onlineusers, Verification.count);
             this.Close();
         }
+
+        private void OAuth_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
