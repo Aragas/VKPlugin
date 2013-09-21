@@ -56,18 +56,6 @@ namespace PluginVK
 
             string text = text1 + text2 + "&";
 
-
-            // Check if file exist..
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-                using (FileStream stream = File.Create(path)) { }
-            }
-            else
-            {
-                using (FileStream stream = File.Create(path)) { }
-            }
-
             // Saving data for Rainmeter WebParser.
             using (StreamWriter outfile = new StreamWriter(path))
             {
